@@ -5,10 +5,10 @@
 \alias{giniCoverage,RangedData,ANY,ANY,ANY,character,missing-method}
 \alias{giniCoverage,RangedData,ANY,ANY,ANY,missing,integer-method}
 \alias{giniCoverage,RangedData,ANY,ANY,ANY,missing,missing-method}
-\alias{giniCoverage,RangedDataList,ANY,ANY,ANY,character,integer-method}
-\alias{giniCoverage,RangedDataList,ANY,ANY,ANY,character,missing-method}
-\alias{giniCoverage,RangedDataList,ANY,ANY,ANY,missing,integer-method}
-\alias{giniCoverage,RangedDataList,ANY,ANY,ANY,missing,missing-method}
+\alias{giniCoverage,list,ANY,ANY,ANY,character,integer-method}
+\alias{giniCoverage,list,ANY,ANY,ANY,character,missing-method}
+\alias{giniCoverage,list,ANY,ANY,ANY,missing,integer-method}
+\alias{giniCoverage,list,ANY,ANY,ANY,missing,missing-method}
 \alias{giniCoverage,GRanges,ANY,ANY,ANY,character,integer-method}
 \alias{giniCoverage,GRanges,ANY,ANY,ANY,character,missing-method}
 \alias{giniCoverage,GRanges,ANY,ANY,ANY,missing,integer-method}
@@ -46,35 +46,35 @@ Analize a single RangeData object with 'chrLengths' used as chromosome lengths i
 }
 \item{\code{signature(sample = "RangedData", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "missing", chrLengths = "missing", numSim="missing")}}{
 %%  ~~describe this method here~~
-Analize all RangeData objects from sample (RangedDataList) with hromosome lengths for simulations taken as the largest end position of reads in each chromosome of all samples.
+Analize all RangeData objects from sample (list) with hromosome lengths for simulations taken as the largest end position of reads in each chromosome of all samples.
 
 }
 
-\item{\code{signature(sample = "RangedDataList", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "character", chrLengths = "integer", numSim="missing")}}{
+\item{\code{signature(sample = "list", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "character", chrLengths = "integer", numSim="missing")}}{
 %%  ~~describe this method here~~
- Analize all RangeData objects from sample (RangedDataList) with 'chrLengths' used as chromosome lengths in simulations ('Species' is ignored).
+ Analize all RangeData objects from sample (list) with 'chrLengths' used as chromosome lengths in simulations ('Species' is ignored).
 }
 
-\item{\code{signature(sample = "RangedDataList", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "character", chrLengths = "missing", numSim="missing")}}{
+\item{\code{signature(sample = "list", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "character", chrLengths = "missing", numSim="missing")}}{
 %%  ~~describe this method here~~
- Analize all RangeData objects from sample (RangedDataList) with chromosome lengths for simulations taken from BSgenome 'species' (package must be installed).
+ Analize all RangeData objects from sample (list) with chromosome lengths for simulations taken from BSgenome 'species' (package must be installed).
 }
 
-\item{\code{signature(sample = "RangedDataList", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "missing", chrLengths = "integer", numSim="missing")}}{
+\item{\code{signature(sample = "list", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "missing", chrLengths = "integer", numSim="missing")}}{
 %%  ~~describe this method here~~
- Analize all RangeData objects from sample (RangedDataList) with 'chrLengths' used as chromosome lengths in simulations.
+ Analize all RangeData objects from sample (list) with 'chrLengths' used as chromosome lengths in simulations.
 }
 
-\item{\code{signature(sample = "RangedDataList", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "missing", chrLengths = "missing", numSim="missing")}}{
+\item{\code{signature(sample = "list", mc.cores = "ANY", mk.plot = "ANY", seqName = "ANY", species = "missing", chrLengths = "missing", numSim="missing")}}{
 %%  ~~describe this method here~~
- Analize all RangeData objects from sample (RangedDataList) with chromosome lengths for simulations taken as the largest end position of reads in each chromosome of sample.
+ Analize all RangeData objects from sample (list) with chromosome lengths for simulations taken as the largest end position of reads in each chromosome of sample.
 }
 }}
 \usage{
 giniCoverage(sample, mc.cores = 1, mk.plot = FALSE, seqName = "missing", species="missing", chrLengths="missing", numSim="missing")
 }
 \arguments{
-\item{sample}{A RangedData or RangedDataList object}
+\item{sample}{A RangedData or list object}
 \item{seqName}{ If sample is a RangedData, name of sequence to use in
   plots }
 \item{mk.plot}{ Logical. If TRUE, logarithm of coverage values' histogram and Lorenz
@@ -101,7 +101,7 @@ giniCoverage(sample, mc.cores = 1, mk.plot = FALSE, seqName = "missing", species
   Since the Gini coefficient depends on the number of reads per sample, a correction is performed by substracting the Gini index from a sample with uniformily distributed reads. 
 }
 \value{
-  If \code{mk.plot==FALSE}, the Gini index and adjusted Gini index for each element in the \code{RangedDataList} or \code{RangedData}
+  If \code{mk.plot==FALSE}, the Gini index and adjusted Gini index for each element in the \code{list} or \code{RangedData}
   object.
   
   If \code{mk.plot==TRUE}, a plot is produced showing the
@@ -127,7 +127,7 @@ ip <- rbind(peak1,peak2)
 bg <- runif(1000,1,300)
 bg <- RangedData(IRanges(bg,bg+38),space='chr1')
 
-rdl <- RangedDataList(ip,bg)
+rdl <- list(ip,bg)
 ssdCoverage(rdl)
 giniCoverage(rdl)
 }

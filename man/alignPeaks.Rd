@@ -3,7 +3,7 @@
 \alias{alignPeaks-methods}
 \alias{alignPeaks,IRangesList,list-method}
 \alias{alignPeaks,RangedData,character-method}
-\alias{alignPeaks,RangedDataList,character-method}
+\alias{alignPeaks,list,character-method}
 \alias{alignPeaks,GRanges,character-method}
 \alias{alignPeaks,GRangesList-method}
 \alias{alignPeaks,GRangesList,ANY-method}
@@ -26,7 +26,7 @@ to the plus and the minus strands.
   \code{x} gives read start and end positions, and \code{strand} gives
   the name of the variable in \code{values(x)} containing the strand information. }
 
-\item{\code{signature(x = "RangedDataList", strand = "character")}}{
+\item{\code{signature(x = "list", strand = "character")}}{
   The method for \code{RangedData} is applied to each element in \code{x} separately, as each element may
   have a different strand-specific bias. }
 }}
@@ -34,10 +34,10 @@ to the plus and the minus strands.
 alignPeaks(x, strand, npeaks = 1000, bandwidth = 150, mc.cores=1)
 }
 \arguments{
-\item{x}{A \code{RangedDataList}, \code{RangedData} or an \code{IRangesList} object
+\item{x}{A \code{list}, \code{RangedData} or an \code{IRangesList} object
   containing the aligned reads in each chromosome.}
 \item{strand}{Strand that each read was aligned to.
-  If \code{x} is of class \code{RangedDataList}, \code{strand}
+  If \code{x} is of class \code{list}, \code{strand}
   can be a character vector of length 1 indicating the name
   of the field in \code{x} indicating the strand,
   i.e. \code{x[[1]][[strand]]} contains the strand information.}
@@ -46,7 +46,7 @@ alignPeaks(x, strand, npeaks = 1000, bandwidth = 150, mc.cores=1)
   between them and their closest gene are used to estimate the shift
   size.}
 \item{mc.cores}{Number of cores to be used for parallel computing
-  (passed on to \code{mclapply}). Only used if \code{x} is of class \code{RangedDataList}.}
+  (passed on to \code{mclapply}). Only used if \code{x} is of class \code{list}.}
 }
 \value{
   A \code{CompressedIRangesList} object with all reads shifted so that

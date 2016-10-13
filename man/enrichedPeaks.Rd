@@ -51,7 +51,7 @@ significantly enriched regions found via \code{enrichedRegions}.
 enrichedPeaks(regions, sample1, sample2, minHeight=100, space, mc.cores=1)
 }
 \arguments{
-  \item{regions}{\code{RangedDataList} or \code{RangedData} indicating
+  \item{regions}{\code{list} or \code{RangedData} indicating
     the regions in which we wish to find peaks.}
   \item{sample1}{\code{IRangesList} or \code{IRanges} object containing
     start and end of sequences in sample 1.}
@@ -64,7 +64,7 @@ enrichedPeaks(regions, sample1, sample2, minHeight=100, space, mc.cores=1)
   \item{space}{Character text giving the name of the space for the
     \code{RangedData} object. Only used if \code{sample1} and
     \code{sample2} are of class \code{RangedData}, for
-    \code{RangedDataList} this is set up automatically.}
+    \code{list} this is set up automatically.}
   \item{mc.cores}{If \code{mc.cores}>1 computations for each element in the
     \code{IRangesList} objects are performed in parallel (using
   the \code{parallel} function from package

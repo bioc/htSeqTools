@@ -3,7 +3,7 @@
 \alias{ssdCoverage-methods}
 \alias{ssdCoverage,IRangesList-method}
 \alias{ssdCoverage,RangedData-method}
-\alias{ssdCoverage,RangedDataList-method}
+\alias{ssdCoverage,list-method}
 \alias{ssdCoverage,GRanges-method}
 \alias{ssdCoverage,GRangesList-method}
 \title{Standardized SD of the genomic coverage}
@@ -28,7 +28,7 @@ as a weighted average of the coefficients of variation for each chromosome
 The method for \code{IRangesList} is used on \code{ranges(x)}.
 }
 
-\item{\code{signature(x = "RangedDataList")}}{
+\item{\code{signature(x = "list")}}{
 A vector with coefficients of variation for each element in \code{x} are
 returned, by repeatedly calling the method for \code{RangedData} objects.
 Use \code{mc.cores} to speed up computations with \code{mclapply},
@@ -40,7 +40,7 @@ ssdCoverage(x, mc.cores=1)
 }
 \arguments{
 \item{x}{Object with ranges indicating the start and end of each read. Currently, \code{x} can be of class
-  \code{RangedDataList}, \code{RangedData} and \code{IRangesList}.}
+  \code{list}, \code{RangedData} and \code{IRangesList}.}
 \item{mc.cores}{Set \code{mc.cores} to a value greater than 1 to perform
 computations in parallel, using package \code{mclapply}.}
 }
@@ -71,7 +71,7 @@ ip <- rbind(peak1,peak2)
 bg <- runif(1000,1,300)
 bg <- RangedData(IRanges(bg,bg+38),space='chr1')
 
-rdl <- RangedDataList(ip,bg)
+rdl <- list(ip,bg)
 ssdCoverage(rdl)
 giniCoverage(rdl)
 }

@@ -1,7 +1,7 @@
 \name{cmds}
 \alias{cmds}
 \alias{cmds-methods}
-\alias{cmds,RangedDataList-method}
+\alias{cmds,list-method}
 \alias{cmds,GRangesList-method}
 \title{Classical Multi-Dimensional Scaling}
 \description{
@@ -15,9 +15,9 @@ This provides PCA analog for sequencing data.
 \section{Methods}{
 \describe{
 
-\item{\code{signature(x = "RangedDataList")}}{ Use Classical
+\item{\code{signature(x = "list")}}{ Use Classical
   Multi-Dimensional Scaling to plot each element of the
-  \code{RangedDataList} object in a k-dimensional space. The coverage is
+  \code{list} object in a k-dimensional space. The coverage is
   computed for each element in \code{x}, and the pairwise correlations
   between elements is used to define distances. }
 }}
@@ -25,7 +25,7 @@ This provides PCA analog for sequencing data.
 cmds(x, k=2, logscale=TRUE, mc.cores=1, cor.method='pearson')
 }
 \arguments{
-\item{x}{ A \code{RangedDataList} object, e.g. each element containing the
+\item{x}{ A \code{list} object, e.g. each element containing the
   output of a sequencing run.}
 \item{k}{ Dimensionality of the reconstructed space, typically set to 2
   or 3.}

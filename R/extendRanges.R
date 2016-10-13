@@ -17,7 +17,7 @@ setMethod("extendRanges",signature(x='RangedData'),
 )
 
 
-setMethod("extendRanges",signature(x='RangedDataList'),
+setMethod("extendRanges",signature(x='list'),
   function(x,seqLen=200,chrlength,mc.cores=1) {
     x <- as.list(x)
     if (mc.cores>1) {
@@ -25,7 +25,7 @@ setMethod("extendRanges",signature(x='RangedDataList'),
         ans <- parallel::mclapply(x, function(z) extendRanges(z, seqLen=seqLen, chrlength=chrlength), mc.cores=mc.cores, mc.preschedule=FALSE)
       } else stop('parallel library has not been loaded!')
     } else ans <- lapply(x, function(z) extendRanges(z, seqLen=seqLen, chrlength=chrlength))
-    ans <- RangedDataList(ans)
+    ans <- list(ans)
     return(ans)
   }
 )
@@ -43,7 +43,7 @@ setMethod("extendRanges",signature(x='GRanges'),
 
 setMethod("extendRanges",signature(x='GRangesList'),
   function(x,seqLen=200,chrlength,mc.cores=1) {
-    x <- RangedDataList(lapply(x,function(y) as(y,'RangedData')))
+    x <- list(lapply(x,function(y) as(y,'RangedData')))
     ans <- extendRanges(x,seqLen=seqLen,chrLength=chrLength,mc.cores=mc.cores)
     ans <- as(ans,'GRangesList')
     return(ans)

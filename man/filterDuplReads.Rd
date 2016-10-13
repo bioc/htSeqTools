@@ -4,12 +4,12 @@
 \alias{tabDuplReads}
 \alias{filterDuplReads-methods}
 \alias{filterDuplReads,RangedData-method}
-\alias{filterDuplReads,RangedDataList-method}
+\alias{filterDuplReads,list-method}
 \alias{filterDuplReads,GRanges-method}
 \alias{filterDuplReads,GRangesList-method}
 \alias{tabDuplReads-methods}
 \alias{tabDuplReads,RangedData-method}
-\alias{tabDuplReads,RangedDataList-method}
+\alias{tabDuplReads,list-method}
 \alias{tabDuplReads,GRanges-method}
 \alias{tabDuplReads,GRangesList-method}
 \title{ Detect and filter duplicated reads/sequences. }
@@ -33,7 +33,7 @@ Methods for \code{filterDuplReads} and \code{tabDuplReads}
 \item{\code{signature(x = "RangedData")}}{ Two reads are duplicated if
   they have the same space, start and end position. }
 
-\item{\code{signature(x = "RangedDataList")}}{ The method is applied
+\item{\code{signature(x = "list")}}{ The method is applied
   separately to each \code{RangedData} element in the list. }
 }}
 \usage{
@@ -43,7 +43,7 @@ tabDuplReads(x,  minRepeats=1, mc.cores=1)
 }
 \arguments{
   \item{x}{ Object containing read locations.
-    Currently methods for \code{RangedData} and \code{RangedDataList}.
+    Currently methods for \code{RangedData} and \code{list}.
     Duplication is assessed based only on the space,
     start, end and \code{x[['strand']]}, i.e. even if they are different
     based on other variables stored in \code{values(x)}, the reads are

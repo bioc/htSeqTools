@@ -3,7 +3,7 @@
 \alias{extendRanges}
 \alias{extendRanges-methods}
 \alias{extendRanges,RangedData-method}
-\alias{extendRanges,RangedDataList-method}
+\alias{extendRanges,list-method}
 \alias{extendRanges,GRanges-method}
 \alias{extendRanges,GRangesList-method}
 \title{
@@ -20,7 +20,7 @@ Extend reads or sequences by a user-specified number of bases.
 chromosome, \code{start(x)} and \code{end(x)} the start/end positions of
 each read. }
 
-\item{\code{signature(x = "RangedDataList")}}{Each element in \code{x}
+\item{\code{signature(x = "list")}}{Each element in \code{x}
   is assumed to correspond to a different sample. }
 }}
 \usage{

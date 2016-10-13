@@ -9,7 +9,7 @@ setMethod("ssdCoverage", signature(x="IRangesList"), function(x, mc.cores=1) {
 
 setMethod("ssdCoverage", signature(x='RangedData'), function(x, mc.cores=1) { ssdCoverage(ranges(x)) } )
 
-setMethod("ssdCoverage", signature(x='RangedDataList'), function(x, mc.cores=1) {
+setMethod("ssdCoverage", signature(x='list'), function(x, mc.cores=1) {
   if (mc.cores>1) {
     if ('parallel' %in% loadedNamespaces()) {
       ans <- parallel::mclapply(as.list(x), ssdCoverage, mc.cores=mc.cores, mc.preschedule=FALSE)
@@ -31,7 +31,7 @@ setMethod("ssdCoverage", signature(x='GRanges'),
 
 setMethod("ssdCoverage", signature(x='GRangesList'),
   function(x, mc.cores=1) {
-    x <- RangedDataList(lapply(x,function(y) as(y,'RangedData')))
+    x <- list(lapply(x,function(y) as(y,'RangedData')))
     ans <- ssdCoverage(x,mc.cores=mc.cores)
     return(ans)
   }

@@ -40,13 +40,13 @@ fillRleList <- function(z, l) {
 ## MAIN ROUTINES
 ############################################################################
 
-setMethod(islandCounts, signature=(x='RangedDataList'), function(x, minReads=10, mc.cores=1) {
+setMethod(islandCounts, signature=(x='list'), function(x, minReads=10, mc.cores=1) {
   #Add chromosomes missing in some samples
   n <- lapply(x,names)
   alln <- unique(unlist(n))
   missx <- lapply(n, function(z) { miss <- alln[!(alln %in% z)]; RangedData(IRanges(integer(0),integer(0)),space=miss) })
   sel <- sapply(missx,length)>0
-  if (any(sel)) x[sel] <- RangedDataList(mapply(function(z,zmiss) { c(z,zmiss) }, z=x[sel], zmiss=missx[sel]))
+  if (any(sel)) x[sel] <- list(mapply(function(z,zmiss) { c(z,zmiss) }, z=x[sel], zmiss=missx[sel]))
   x <- lapply(x,function(z) RangedData(ranges(z)[alln]))  #sort by chromosome name           
   #Overall coverage
   if (mc.cores>1) {
@@ -91,7 +91,7 @@ setMethod(islandCounts, signature=(x='RangedDataList'), function(x, minReads=10,
 )
 
 setMethod(islandCounts, signature=(x='RangedData'), function(x, minReads=10, mc.cores=1) {
-  islandCounts(RangedDataList(x), minReads=minReads, mc.cores=mc.cores)
+  islandCounts(list(x), minReads=minReads, mc.cores=mc.cores)
 }
 )
 
@@ -106,7 +106,9 @@ setMethod(islandCounts, signature=(x='GRanges'),
 
 setMethod(islandCounts, signature=(x='GRangesList'),
   function(x, minReads=10, mc.cores=1) {
-    x <- RangedDataList(lapply(x,function(y) as(y,'RangedData')))
+    x <- as.list(x)
+    x <- lapply(x,function(y) RangedData(y))
+    #x <- list(lapply(x,function(y) as(y,'RangedData')))
     ans <- islandCounts(x,minReads=minReads,mc.cores=mc.cores)
     ans <- as(ans,'GRanges')
     return(ans)

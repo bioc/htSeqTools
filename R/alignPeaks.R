@@ -1,8 +1,8 @@
-setMethod("alignPeaks",signature(x='RangedDataList', strand='character'),
+setMethod("alignPeaks",signature(x='list', strand='character'),
   function(x, strand, npeaks=1000, bandwidth=150, mc.cores=1) {
     x <- as.list(x)
     ans <- parallel::mclapply(x, FUN=function(z) alignPeaks(z, strand=strand, npeaks=npeaks, bandwidth=bandwidth), mc.cores=mc.cores, mc.preschedule=FALSE)
-    ans <- RangedDataList(ans)
+    ans <- list(ans)
     names(ans) <- names(x)
     return(ans)
   }
@@ -112,7 +112,7 @@ setMethod("alignPeaks",signature(x='GRanges',strand='character'),
 
 setMethod("alignPeaks",signature(x='GRangesList'),
   function(x, strand, npeaks=1000, bandwidth=150, mc.cores=1) {
-    x <- RangedDataList(lapply(x,function(y) as(y,'RangedData')))
+    x <- list(lapply(x,function(y) as(y,'RangedData')))
     ans <- alignPeaks(x,strand=strand,npeaks=npeaks,bandwidth=bandwidth,mc.cores=mc.cores)
     ans <- as(ans,'GRangesList')
     return(ans)

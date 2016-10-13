@@ -3,7 +3,7 @@
 \alias{enrichedRegions-methods}
 \alias{enrichedRegions,RangedData,RangedData,missing,ANY,ANY-method}
 \alias{enrichedRegions,RangedData,missing,missing,ANY,ANY-method}
-\alias{enrichedRegions,RangedDataList,missing,missing,ANY,ANY-method}
+\alias{enrichedRegions,list,missing,missing,ANY,ANY-method}
 \alias{enrichedRegions,missing,missing,RangedData,ANY,missing-method}
 \alias{enrichedRegions,missing,missing,RangedData,ANY,numeric-method}
 \alias{enrichedRegions,GRanges,GRanges,missing,ANY,ANY-method}
@@ -26,7 +26,7 @@
       likelihood-ratio test (or permutation-based chi-square for regions
       where the expected counts are below 5 for some group). }
 
-    \item{\code{signature(sample1 = "RangedDataList", sample2 =
+    \item{\code{signature(sample1 = "list", sample2 =
 	"missing", regions = "missing")}}{Each element in \code{sample1} contains the read
       start/end of an individual sample. \code{enrichedRegions} identifies
       regions with high concentration of reads (across all samples) and
@@ -58,7 +58,7 @@ mc.cores=1)
 }
 \arguments{
   \item{sample1}{Either start and end of sequences in sample 1 (\code{IRangesList}, \code{RangedData} or \code{IRanges} object),
-    of \code{RangedDataList} with sequences for all samples
+    of \code{list} with sequences for all samples
     (\code{sample2} must be left missing in this case) .}
   \item{sample2}{Same for sample 2. Can be left missing.}
   \item{regions}{If specified, the analysis is restricted to the regions
@@ -67,7 +67,7 @@ mc.cores=1)
   \item{minReads}{This argument is only used when \code{regions} is not
     specified. The regions to be tested for enrichment are those with coverage
     greater or equal than \code{minReads}.
-    If \code{sample1} is a \code{RangedDataList}, the overall coverage
+    If \code{sample1} is a \code{list}, the overall coverage
     adding all samples is used.
     Otherwise, if \code{twoTailed} is FALSE, only the reads in
     sample 1 are counted. If \code{twoTailed} is TRUE, the sum of reads
@@ -79,7 +79,7 @@ mc.cores=1)
   \item{exact}{ If set to TRUE, an exact test is used whenever
     some expected cell counts are 5 or less
     (chi-square test based on permutations if \code{sample1} is a
-    \code{RangedDataList} object, Fisher's exact test otherwise),
+    \code{list} object, Fisher's exact test otherwise),
     i.e. when the asymptotic chi-square/likelihood-ratio test calculations break down. Ignored
     if \code{sample2} is missing, as in this case calculations are
     always exact.}
@@ -115,7 +115,7 @@ mc.cores=1)
   continuity correction), which takes into
   account the total number of sequences in each sample.
   Finally, statistically significant regions are selected and returned
-  in \code{RangedData} or \code{RangedDataList} objects.
+  in \code{RangedData} or \code{list} objects.
 
   Missing \code{sample2}. First, regions with coverage above \code{minReads} are selected.
   Second, the number of reads in sample 1 falling in the selected regions is computed.

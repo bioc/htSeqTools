@@ -12,7 +12,7 @@ setMethod("cmdsFit", signature=c(d='matrix'), function(d,k=2,type='classic',add=
 }
 )
 
-setMethod("cmds", signature(x='RangedDataList'), function(x, k=2, logscale=TRUE, mc.cores=1, cor.method='pearson') {
+setMethod("cmds", signature(x='list'), function(x, k=2, logscale=TRUE, mc.cores=1, cor.method='pearson') {
   cat('Computing coverage...\n')
   if (mc.cores>1) {
     if ('parallel' %in% loadedNamespaces()) {
@@ -89,7 +89,8 @@ corRle <- function(z1, z2, cor.method='pearson') {
 
 setMethod("cmds", signature(x='GRangesList'),
   function(x, k=2, logscale=TRUE, mc.cores=1, cor.method='pearson') {
-    x <- RangedDataList(lapply(x,function(y) as(y,'RangedData')))
+    #x <- list(lapply(x,function(y) as(y,'RangedData')))
+    x <- as.list(x)
     ans <- cmds(x,k=k,logscale=logscale,mc.cores=mc.cores,cor.method=cor.method)
     #ans <- as(ans,'GRangesList')
     return(ans)

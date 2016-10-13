@@ -2,7 +2,7 @@
 \alias{islandCounts}
 \alias{islandCounts-methods}
 \alias{islandCounts,RangedData-method}
-\alias{islandCounts,RangedDataList-method}
+\alias{islandCounts,list-method}
 \alias{islandCounts,GRanges-method}
 \alias{islandCounts,GRangesList-method}
 \title{Find genomic regions with high coverage and count number of reads
@@ -21,7 +21,7 @@ overlapping each region in each sample}
 reads overlapping these regions will be computed.
 }
 
-\item{\code{signature(x = "RangedDataList")}}{
+\item{\code{signature(x = "list")}}{
 \code{x} is assumed to contain the reads for several samples, one sample
 in each element of the list.
 The overall coverage across all samples is computed by adding the
@@ -34,8 +34,8 @@ Then the number of reads overlapping each region is computed.
 islandCounts(x, minReads=10, mc.cores=1)
 }
 \arguments{
-  \item{x}{\code{RangedData} or \code{RangedDataList} containing the
-    reads. If a \code{RangedDataList} is provided, the overall coverage
+  \item{x}{\code{RangedData} or \code{list} containing the
+    reads. If a \code{list} is provided, the overall coverage
     across all its elements is used to find the regions of interest, but
   individual counts are computed for each element in the list.}
   \item{minReads}{Only regions with coverage above \code{minReads} are
@@ -62,7 +62,7 @@ sample1 <- RangedData(IRanges(st,st+38),strand=strand,space=space)
 st <- round(rnorm(1000,1000,100))
 sample2 <- RangedData(IRanges(st,st+38),strand=strand,space=space)
 
-regions <- islandCounts(RangedDataList(sample1,sample2),minReads=50)
+regions <- islandCounts(list(sample1,sample2),minReads=50)
 regions
 
 #Plot coverage

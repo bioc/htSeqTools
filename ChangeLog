@@ -1,3 +1,5 @@
+Version 1.20.0
+- Removed support for defunct RangedDataList objects (replaced by plain list of RangedData elements)
 Version 1.7.1
 - Added findPeakHeight function to estimate optimal minHeight value based on False Discovery Rate for using in enrichedPeaks
 Version 1.5.1
