@@ -62,10 +62,10 @@ mc.cores=1)
     (\code{sample2} must be left missing in this case) .}
   \item{sample2}{Same for sample 2. Can be left missing.}
   \item{regions}{If specified, the analysis is restricted to the regions
-    indicated in \code{regions}. If not specified, the regions are
-    automatically defined using the argument \code{minReads}.}
-  \item{minReads}{This argument is only used when \code{regions} is not
-    specified. The regions to be tested for enrichment are those with coverage
+    indicated in \code{regions}, using the value columns featuring the
+    read count for each sample. This is mutually exclusive with the
+    default behaviour where \code{sample1} and/or \code{sample2} are provided.}
+  \item{minReads}{The regions to be tested for enrichment are those with coverage
     greater or equal than \code{minReads}.
     If \code{sample1} is a \code{list}, the overall coverage
     adding all samples is used.
