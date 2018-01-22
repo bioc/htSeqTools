@@ -209,7 +209,7 @@ function(sample, mc.cores=1, mk.plot=FALSE, seqName="", species, chrLengths=1, n
                 ranges
               })
            }
-   RD<-RangedData(RangesList(rangesl))
+   RD<-RangedData(as(rangesl, "IRangesList"))
    RD   
       }
 
