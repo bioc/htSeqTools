@@ -1,5 +1,5 @@
 Package: htSeqTools
-Version: 1.27.2
+Version: 1.27.3
 Date: 2016-10-13
 Title: Quality Control, Visualization and Processing for
         High-Throughput Sequencing data
@@ -27,3 +27,4 @@ Collate: ClassDefinitions.R GenericDefs.R alignPeaks.R extendRanges.R
         plotChrRegions.R coverageDiff.R plotMeanCoverage.R
         findPeakHeight.R
 biocViews: Sequencing, QualityControl
+PackageStatus: Deprecated
