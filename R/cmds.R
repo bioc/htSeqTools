@@ -96,3 +96,13 @@ setMethod("cmds", signature(x='GRangesList'),
     return(ans)
   }
 )
+
+setMethod("cmds", signature(x='CompressedGRangesList'),
+  function(x, k=2, logscale=TRUE, mc.cores=1, cor.method='pearson') {
+    #x <- list(lapply(x,function(y) as(y,'RangedData')))
+    x <- as.list(x)
+    ans <- cmds(x,k=k,logscale=logscale,mc.cores=mc.cores,cor.method=cor.method)
+    #ans <- as(ans,'GRangesList')
+    return(ans)
+  }
+)

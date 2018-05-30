@@ -45,9 +45,11 @@ setMethod(islandCounts, signature=(x='list'), function(x, minReads=10, mc.cores=
   n <- lapply(x,names)
   alln <- unique(unlist(n))
   missx <- lapply(n, function(z) { miss <- alln[!(alln %in% z)]; RangedData(IRanges(integer(0),integer(0)),space=miss) })
+  missx <- lapply(missx,as,'GRanges')
   sel <- sapply(missx,length)>0
   if (any(sel)) x[sel] <- list(mapply(function(z,zmiss) { c(z,zmiss) }, z=x[sel], zmiss=missx[sel]))
-  x <- lapply(x,function(z) RangedData(ranges(z)[alln]))  #sort by chromosome name           
+  x <- lapply(x,function(z) RangedData(ranges(z)[alln]))  #sort by chromosome name
+  x <- lapply(x,as,'GRanges')
   #Overall coverage
   if (mc.cores>1) {
     if ('parallel' %in% loadedNamespaces()) {

@@ -91,8 +91,10 @@ setMethod("enrichedChrRegions", signature(hits1='GRanges', hits2='GRanges'),
 setMethod("countHitsWindow", signature(x="RangedData"), function(x, chrLength, windowSize=10^4-1) {
   if ((windowSize %% 2)==0) windowSize <- windowSize-1
   peaksSinglebase <- .5*(start(x) + end(x))
-  peaksSinglebase <- RangedData(IRanges(peaksSinglebase,peaksSinglebase),space=space(x)) 
-  peaksRle <- coverage(peaksSinglebase, width=as.list(chrLength[names(peaksSinglebase)]))
+  peaksSinglebase <- RangedData(IRanges(peaksSinglebase,peaksSinglebase),space=space(x))
+  peaksSinglebase <- as(peaksSinglebase,'GRanges')
+  #peaksRle <- coverage(peaksSinglebase, width=as.list(chrLength[names(peaksSinglebase)]))
+  peaksRle <- coverage(peaksSinglebase, width=NULL)
   peaksSmooth <- runsum(peaksRle, k=windowSize, endrule='constant')
   return(peaksSmooth)
 }
@@ -170,7 +172,9 @@ randomHitsWindow <- function(nhits, chrLength, windowSize=10^4-1) {
   chrRand <- rep(names(chrLength),chrRand)
   posRand <- floor(runif(nhits,min=1,max=chrLength[chrRand]+1))
   xRand <- RangedData(IRanges(posRand,posRand),space=chrRand)
-  covRand <- coverage(xRand, width=as.list(chrLength[names(xRand)]))
+  xRand <- as(xRand,'GRanges')
+  #covRand <- coverage(xRand, width=as.list(chrLength[names(xRand)]))
+  covRand <- coverage(xRand, width=NULL)
   covSmooth <- runsum(covRand, k=windowSize, endrule='constant')
   return(covSmooth)
 }

@@ -4,6 +4,7 @@
 \alias{gridCover-class}
 \alias{lines,gridCover-method}
 \alias{plot,gridCover,ANY-method}
+\alias{[,gridCover,ANY,ANY,ANY-method}
 \alias{show,gridCover-method}
 \alias{getViewsInfo,gridCover-method}
 \alias{getCover,gridCover-method}
