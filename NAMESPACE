@@ -7,6 +7,13 @@ import(GenomicRanges)
 importFrom("graphics", "plot", "lines")
 importFrom("MASS", "isoMDS")
 importFrom("BSgenome", "available.genomes")
+  importFrom("graphics", "abline", "axis", "hist", "legend", "par",
+             "points", "rect", "segments", "text")
+  importFrom("grDevices", "nclass.Sturges")
+  importFrom("stats", "anova", "approxfun", "as.dist", "chisq.test",
+             "cmdscale", "dist", "dmultinom", "dnbinom", "glm", "isoreg",
+             "loess", "nlminb", "p.adjust", "pbinom", "pchisq",
+             "rmultinom", "runif", "weighted.mean")
 
 exportMethods(alignPeaks, extendRanges, filterDuplReads, mergeRegions, enrichedRegions, enrichedPeaks, stdPeakLocation, PeakLocation, listOverlap, tabDuplReads, cmds, cmdsFit, islandCounts, ssdCoverage, giniCoverage, regionsCoverage, stdGrid, plot, lines, enrichedChrRegions, countHitsWindow, getViewsInfo, getCover, plotMeanCoverage, findPeakHeight)
 export(fdrEnrichedCounts, gridCoverage, plotChrRegions, coverageDiff, rowLogRegLRT, plotminHeight)

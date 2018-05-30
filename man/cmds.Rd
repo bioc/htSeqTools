@@ -3,6 +3,7 @@
 \alias{cmds-methods}
 \alias{cmds,list-method}
 \alias{cmds,GRangesList-method}
+\alias{cmds,CompressedGRangesList-method}
 \title{Classical Multi-Dimensional Scaling}
 \description{
 \code{cmds} obtain the coordinates of the elements in \code{x} in a
