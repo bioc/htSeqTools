@@ -5,6 +5,11 @@ function(regions, sample1, sample2, hmin=5, hmax=200, myfdr=0.01, gridSize=25, s
   findPeakHeight(regions,ranges(sample1),ranges(sample2),hmin,hmax,myfdr,gridSize,space,mc.cores)
 })
 
+setMethod("findPeakHeight", signature(regions='GRanges', sample1='GRanges', sample2='GRanges'),
+function(regions, sample1, sample2, hmin=5, hmax=200, myfdr=0.01, gridSize=25, space, mc.cores=1) {
+  findPeakHeight(as(regions,'RangedData'),ranges(as(sample1,'RangedData')),ranges(as(sample2,'RangedData')),hmin,hmax,myfdr,gridSize,space,mc.cores)
+})
+
 setMethod("findPeakHeight", signature(regions='RangedData', sample1='IRangesList', sample2='IRangesList'),
 function(regions, sample1, sample2, hmin=5, hmax=200, myfdr=0.01, gridSize=25, space, mc.cores=1) {
   # Function for Peak Calling FDR
@@ -12,8 +17,8 @@ function(regions, sample1, sample2, hmin=5, hmax=200, myfdr=0.01, gridSize=25, s
   sample1 <- sample1[n]; sample2 <- sample2[n]
   # Computing global coverage and height
   cat('\nComputing coverage...')
-  cov1 <- coverage(sample1)
-  cov2 <- coverage(sample2)
+  cov1 <- coverage(as(sample1,'GRanges'))
+  cov2 <- coverage(as(sample2,'GRanges'))
   options(warn=-1)
   hmin <- max(hmin,mean(mean(cov1-cov2)))
   hmax <- min(hmax,mean(max(cov1-cov2)))
