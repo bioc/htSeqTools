@@ -19,6 +19,5 @@ Collate: ClassDefinitions.R GenericDefs.R alignPeaks.R extendRanges.R filterDupl
                     listOverlap.R tabDuplReads.R cmdsFit-class.R cmds.R fdrEnrichedCounts.R islandCounts.R countRepeats.R ssdCoverage.R giniCoverage.R regionsCoverage.R
                     gridCover-methods.R enrichedChrRegions.R plotChrRegions.R coverageDiff.R plotMeanCoverage.R findPeakHeight.R
 biocViews: Sequencing, QualityControl
-PackageStatus: Deprecated
 NeedsCompilation: no
 Packaged: 2018-05-30 15:29:23 UTC; oreina
