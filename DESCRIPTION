@@ -27,4 +27,3 @@ Collate: ClassDefinitions.R GenericDefs.R alignPeaks.R extendRanges.R
         plotChrRegions.R coverageDiff.R plotMeanCoverage.R
         findPeakHeight.R
 biocViews: Sequencing, QualityControl
-PackageStatus: Deprecated
