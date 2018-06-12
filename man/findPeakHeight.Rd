@@ -100,8 +100,8 @@ peaks <- peaks[width(peaks)>10,]
 peaks
 
 #Compute coverage in peaks
-cover <- coverage(sample1)
-coverinpeaks <- regionsCoverage(chr=peaks$space,start=start(peaks),end=end(peaks),cover=cover)
+cover <- coverage(as(sample1,'GRanges'))
+coverinpeaks <- regionsCoverage(chr=seqnames(peaks),start=start(peaks),end=end(peaks),cover=cover)
 
 #Evaluate coverage in regular grid and plot
 #Can be helpful fo clustering of peak profiles

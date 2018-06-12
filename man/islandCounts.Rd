@@ -66,7 +66,7 @@ regions <- islandCounts(list(sample1,sample2),minReads=50)
 regions
 
 #Plot coverage
-plot(coverage(sample1)[[1]],type='l',xlim=c(0,2000))
-lines(coverage(sample2)[[1]],col=2)
+plot(coverage(as(sample1,'GRanges'))[[1]],type='l',xlim=c(0,2000))
+lines(coverage(as(sample2,'GRanges'))[[1]],col=2)
 }
 \keyword{manip}
