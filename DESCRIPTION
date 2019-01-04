@@ -1,5 +1,5 @@
 Package: htSeqTools
-Version: 1.31.0
+Version: 1.31.1
 Date: 2017-05-29
 Title: Quality Control, Visualization and Processing for High-Throughput Sequencing data
 Author: Evarist Planet, Camille Stephan-Otto, Oscar Reina, Oscar
@@ -17,7 +17,9 @@ License: GPL (>=2)
 LazyLoad: yes
 Collate: ClassDefinitions.R GenericDefs.R alignPeaks.R extendRanges.R filterDuplReads.R mergeRegions.R stdPeakLocation.R rowLogRegLRT.R enrichedRegions.R enrichedPeaks.R
                     listOverlap.R tabDuplReads.R cmdsFit-class.R cmds.R fdrEnrichedCounts.R islandCounts.R countRepeats.R ssdCoverage.R giniCoverage.R regionsCoverage.R
-                    gridCover-methods.R enrichedChrRegions.R plotChrRegions.R coverageDiff.R plotMeanCoverage.R findPeakHeight.R
+                    gridCover-methods.R enrichedChrRegions.R plotChrRegions.R
+		    coverageDiff.R plotMeanCoverage.R findPeakHeight.R zzz.R
 biocViews: Sequencing, QualityControl
 NeedsCompilation: no
 Packaged: 2018-05-30 15:29:23 UTC; oreina
+PackageStatus: Deprecated
